@@ -1,0 +1,65 @@
+<ion-header>
+	<ion-navbar primary>
+		<ion-buttons start>
+			<button ion-button menuToggle>
+				<ion-icon name="menu"></ion-icon>
+			</button>
+		</ion-buttons>
+
+		<ion-title>Developer</ion-title>
+
+		<ion-buttons end>
+			<button (click)="addData()" ion-button icon-only>
+				<ion-icon name="add"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<!--
+		<ion-list>
+		<button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
+				<ion-thumbnail item-start>
+					<img src="img/thumbnail-totoro.png">
+				</ion-thumbnail>
+			<ion-icon [name]="item.icon" item-start></ion-icon>
+			<h2>{{ item.name }}</h2>
+			<p>{{ item.yearsOfExperience }} years of {{ item.skill }} Experience</p>
+		</button>
+
+	</ion-list>
+	-->
+
+	<ion-list>
+		<ion-item-sliding #item *ngFor="let item of items"  >
+			<button ion-item (click)="itemTapped($event, item)">
+				<!--
+					<ion-avatar item-start><img [src]="item.icon"></ion-avatar>
+				-->
+				<ion-icon [name]="item.icon" item-start></ion-icon>
+				<h2>{{ item.name }}</h2>
+				<p>{{ item.yearsOfExperience }} years of {{ item.skill }} Experience</p>
+			</button>
+
+			<ion-item-options>
+				<button ion-button color="secondary" (click)="showData(item)">
+					<ion-icon name="menu"></ion-icon>
+					More
+				</button>
+				<button ion-button color="danger" (click)="deleteData(item)">
+					<ion-icon name="trash"></ion-icon>
+					Delete
+				</button>
+			</ion-item-options>
+
+			<ion-item-options side="left" (ionSwipe)="archiveData(item)">
+				<button ion-button color="primary" expandable (click)="archiveData(item)">
+					<ion-icon name="archive" class="expand-hide"></ion-icon>
+					<div class="expand-hide">Archive</div>
+					<ion-spinner id="archive-spinner"></ion-spinner>
+				</button>
+			</ion-item-options>
+		</ion-item-sliding>
+	</ion-list>
+</ion-content>
